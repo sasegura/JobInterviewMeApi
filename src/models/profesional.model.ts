@@ -7,7 +7,7 @@ export class Profesional extends Entity {
   @property({
     type: 'string',
     required: true,
-    postgresql: {columnName: 'nombreperfil', dataType: 'character varying', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'NO'},
+    postgresql: {columnName: 'nombreperfil', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'NO'},
   })
   nombreperfil: string;
 
@@ -28,25 +28,25 @@ export class Profesional extends Entity {
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'sectores', dataType: 'ARRAY', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    postgresql: {columnName: 'sectores', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   sectores?: string;
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'perfiles', dataType: 'ARRAY', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    postgresql: {columnName: 'perfiles', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   perfiles?: string;
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'idiomas', dataType: 'ARRAY', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    postgresql: {columnName: 'idiomas', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   idiomas?: string;
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'hashtags', dataType: 'ARRAY', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    postgresql: {columnName: 'hashtags', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   hashtags?: string;
 
@@ -65,7 +65,7 @@ export class Profesional extends Entity {
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'canales', dataType: 'ARRAY', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    postgresql: {columnName: 'canales', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   canales?: string;
 
@@ -77,13 +77,12 @@ export class Profesional extends Entity {
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'fechasnulas', dataType: 'ARRAY', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    postgresql: {columnName: 'fechasnulas', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   fechasnulas?: string;
 
   @property({
     type: 'number',
-    required: true,
     scale: 0,
     id: 1,
     postgresql: {columnName: 'idusuario', dataType: 'integer', dataLength: null, dataPrecision: null, dataScale: 0, nullable: 'NO'},
