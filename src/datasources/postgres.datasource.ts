@@ -8,8 +8,8 @@ const config = {
   host: 'localhost',
   port: 5432,
   user: 'postgres',
-  password: 'root',
-  database: 'jobInterView'
+  password: 'postgres',
+  database: 'JobInterView'
 };
 
 // Observe application's life cycle to disconnect the datasource when
