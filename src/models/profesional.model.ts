@@ -57,11 +57,11 @@ export class Profesional extends Entity {
   tipopreparacion?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     scale: 0,
-    postgresql: {columnName: 'duracion', dataType: 'integer', dataLength: null, dataPrecision: null, dataScale: 0, nullable: 'YES'},
+    postgresql: {columnName: 'duracion', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
-  duracion?: number;
+  duracion?: string;
 
   @property({
     type: 'string',
