@@ -4,22 +4,18 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where
+  Where,
 } from '@loopback/repository';
 import {
-  del, get,
-  getModelSchemaRef, param,
-
-
-  patch, post,
-
-
-
-
+  post,
+  param,
+  get,
+  getModelSchemaRef,
+  patch,
   put,
-
+  del,
   requestBody,
-  response
+  response,
 } from '@loopback/rest';
 import {Profesional} from '../models';
 import {ProfesionalRepository} from '../repositories';
@@ -27,8 +23,8 @@ import {ProfesionalRepository} from '../repositories';
 export class ProfesionalController {
   constructor(
     @repository(ProfesionalRepository)
-    public profesionalRepository: ProfesionalRepository,
-  ) { }
+    public profesionalRepository : ProfesionalRepository,
+  ) {}
 
   @post('/profesionals')
   @response(200, {
@@ -41,11 +37,12 @@ export class ProfesionalController {
         'application/json': {
           schema: getModelSchemaRef(Profesional, {
             title: 'NewProfesional',
+            exclude: ['idusuario'],
           }),
         },
       },
     })
-    profesional: Omit<Profesional, 'id'>,
+    profesional: Omit<Profesional, 'idusuario'>,
   ): Promise<Profesional> {
     return this.profesionalRepository.create(profesional);
   }

@@ -37,12 +37,12 @@ export class ProfesionalAgendaController {
         'application/json': {
           schema: getModelSchemaRef(ProfesionalAgenda, {
             title: 'NewProfesionalAgenda',
-            exclude: ['id'],
+            exclude: ['idagenda'],
           }),
         },
       },
     })
-    profesionalAgenda: Omit<ProfesionalAgenda, 'id'>,
+    profesionalAgenda: Omit<ProfesionalAgenda, 'idagenda'>,
   ): Promise<ProfesionalAgenda> {
     return this.profesionalAgendaRepository.create(profesionalAgenda);
   }

@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Profesional} from './profesional.model';
 
 @model({
   settings: {idInjection: false, postgresql: {schema: 'public', table: 'profesionalAgenda'}}
@@ -12,16 +13,26 @@ export class ProfesionalAgenda extends Entity {
     postgresql: {columnName: 'idagenda', dataType: 'integer', dataLength: null, dataPrecision: null, dataScale: 0, nullable: 'NO'},
   })
   idagenda: number;
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'diasemana', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  diasemana?: string;
 
   @property({
-    type: 'number',
-    required: true,
-    scale: 0,
-    id: 2,
-    postgresql: {columnName: 'idprofesional', dataType: 'integer', dataLength: null, dataPrecision: null, dataScale: 0, nullable: 'NO'},
+    type: 'string',
+    postgresql: {columnName: 'horainicio', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
-  idprofesional: number;
+  horainicio?: string;
 
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'horafin', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  horafin?: string;
+
+  @belongsTo(() => Profesional, {name: 'profAgenda'})
+  idprofesional: number;
   // Define well-known properties here
 
   // Indexer property to allow additional data

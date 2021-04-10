@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Cita} from './cita.model';
 
 @model({
   settings: {idInjection: false, postgresql: {schema: 'public', table: 'Usuarios'}}
@@ -6,6 +7,7 @@ import {Entity, model, property} from '@loopback/repository';
 export class Usuarios extends Entity {
   @property({
     type: 'number',
+    required: true,
     scale: 0,
     id: 1,
     postgresql: {columnName: 'idusuario', dataType: 'integer', dataLength: null, dataPrecision: null, dataScale: 0, nullable: 'NO'},
@@ -25,6 +27,14 @@ export class Usuarios extends Entity {
   })
   nombre?: string;
 
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'apellidos', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  apellidos?: string;
+
+  @hasMany(() => Cita, {keyTo: 'idusuario'})
+  UsuarioCitas: Cita[];
   // Define well-known properties here
 
   // Indexer property to allow additional data

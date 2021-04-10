@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {ProfesionalAgenda} from './profesional-agenda.model';
+import {Cita} from './cita.model';
 
 @model({
   settings: {idInjection: false, postgresql: {schema: 'public', table: 'Profesional'}}
@@ -28,46 +30,9 @@ export class Profesional extends Entity {
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'sectores', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
-  })
-  sectores?: string;
-
-  @property({
-    type: 'string',
-    postgresql: {columnName: 'perfiles', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
-  })
-  perfiles?: string;
-
-  @property({
-    type: 'string',
-    postgresql: {columnName: 'idiomas', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
-  })
-  idiomas?: string;
-
-  @property({
-    type: 'string',
-    postgresql: {columnName: 'hashtags', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
-  })
-  hashtags?: string;
-
-  @property({
-    type: 'string',
     postgresql: {columnName: 'tipopreparacion', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   tipopreparacion?: string;
-
-  @property({
-    type: 'string',
-    scale: 0,
-    postgresql: {columnName: 'duracion', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
-  })
-  duracion?: string;
-
-  @property({
-    type: 'string',
-    postgresql: {columnName: 'canales', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
-  })
-  canales?: string;
 
   @property({
     type: 'number',
@@ -77,12 +42,13 @@ export class Profesional extends Entity {
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'fechasnulas', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    postgresql: {columnName: 'fechasnulas', dataType: 'ARRAY', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   fechasnulas?: string;
 
   @property({
     type: 'number',
+    required: true,
     scale: 0,
     id: 1,
     postgresql: {columnName: 'idusuario', dataType: 'integer', dataLength: null, dataPrecision: null, dataScale: 0, nullable: 'NO'},
@@ -101,6 +67,47 @@ export class Profesional extends Entity {
   })
   evaluacion?: number;
 
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'hashtags', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  hashtags?: string;
+
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'sectores', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  sectores?: string;
+
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'idiomas', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  idiomas?: string;
+
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'canales', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  canales?: string;
+
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'perfiles', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  perfiles?: string;
+
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'duracion', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  duracion?: string;
+
+  @hasMany(() => ProfesionalAgenda, {keyTo: 'idprofesional'})
+  profesionalAgenda: ProfesionalAgenda[];
+
+  @hasMany(() => Cita, {keyTo: 'idprofesional'})
+  ProfesionalCitas: Cita[];
   // Define well-known properties here
 
   // Indexer property to allow additional data
