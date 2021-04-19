@@ -1,4 +1,4 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Profesional} from './profesional.model';
 import {Usuarios} from './usuarios.model';
 
@@ -29,6 +29,12 @@ export class Cita extends Entity {
     postgresql: {columnName: 'confirmada', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   confirmada?: string;
+
+  @property({
+    type: 'string',
+    postgresql: {columnName: 'canales', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+  })
+  canales?: string;
 
   @belongsTo(() => Profesional, {name: 'CitaProfesional'})
   idprofesional: number;

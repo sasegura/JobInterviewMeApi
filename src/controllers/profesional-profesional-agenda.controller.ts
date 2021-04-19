@@ -42,7 +42,7 @@ export class ProfesionalProfesionalAgendaController {
     @param.path.number('id') id: number,
     @param.query.object('filter') filter?: Filter<ProfesionalAgenda>,
   ): Promise<ProfesionalAgenda[]> {
-    return this.profesionalRepository.profesionalAgenda(id).find(filter);
+    return this.profesionalRepository.ProfesionalAgendas(id).find(filter);
   }
 
   @post('/profesionals/{id}/profesional-agenda', {
@@ -67,7 +67,7 @@ export class ProfesionalProfesionalAgendaController {
       },
     }) profesionalAgenda: Omit<ProfesionalAgenda, 'idagenda'>,
   ): Promise<ProfesionalAgenda> {
-    return this.profesionalRepository.profesionalAgenda(id).create(profesionalAgenda);
+    return this.profesionalRepository.ProfesionalAgendas(id).create(profesionalAgenda);
   }
 
   @patch('/profesionals/{id}/profesional-agenda', {
@@ -90,7 +90,7 @@ export class ProfesionalProfesionalAgendaController {
     profesionalAgenda: Partial<ProfesionalAgenda>,
     @param.query.object('where', getWhereSchemaFor(ProfesionalAgenda)) where?: Where<ProfesionalAgenda>,
   ): Promise<Count> {
-    return this.profesionalRepository.profesionalAgenda(id).patch(profesionalAgenda, where);
+    return this.profesionalRepository.ProfesionalAgendas(id).patch(profesionalAgenda, where);
   }
 
   @del('/profesionals/{id}/profesional-agenda', {
@@ -105,6 +105,6 @@ export class ProfesionalProfesionalAgendaController {
     @param.path.number('id') id: number,
     @param.query.object('where', getWhereSchemaFor(ProfesionalAgenda)) where?: Where<ProfesionalAgenda>,
   ): Promise<Count> {
-    return this.profesionalRepository.profesionalAgenda(id).delete(where);
+    return this.profesionalRepository.ProfesionalAgendas(id).delete(where);
   }
 }

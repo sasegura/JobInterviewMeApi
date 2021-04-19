@@ -108,6 +108,9 @@ export class Profesional extends Entity {
 
   @hasMany(() => Cita, {keyTo: 'idprofesional'})
   ProfesionalCitas: Cita[];
+
+  @hasMany(() => ProfesionalAgenda, {keyTo: 'idprofesional'})
+  ProfesionalAgendas: ProfesionalAgenda[];
   // Define well-known properties here
 
   // Indexer property to allow additional data

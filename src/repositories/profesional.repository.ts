@@ -15,10 +15,14 @@ export class ProfesionalRepository extends DefaultCrudRepository<
 
   public readonly ProfesionalCitas: HasManyRepositoryFactory<Cita, typeof Profesional.prototype.idusuario>;
 
+  public readonly ProfesionalAgendas: HasManyRepositoryFactory<ProfesionalAgenda, typeof Profesional.prototype.idusuario>;
+
   constructor(
     @inject('datasources.postgres') dataSource: PostgresDataSource, @repository.getter('ProfesionalAgendaRepository') protected profesionalAgendaRepositoryGetter: Getter<ProfesionalAgendaRepository>, @repository.getter('CitaRepository') protected citaRepositoryGetter: Getter<CitaRepository>,
   ) {
     super(Profesional, dataSource);
+    this.ProfesionalAgendas = this.createHasManyRepositoryFactoryFor('ProfesionalAgendas', profesionalAgendaRepositoryGetter,);
+    this.registerInclusionResolver('ProfesionalAgendas', this.ProfesionalAgendas.inclusionResolver);
     this.ProfesionalCitas = this.createHasManyRepositoryFactoryFor('ProfesionalCitas', citaRepositoryGetter,);
     this.registerInclusionResolver('ProfesionalCitas', this.ProfesionalCitas.inclusionResolver);
     this.profesionalAgenda = this.createHasManyRepositoryFactoryFor('profesionalAgenda', profesionalAgendaRepositoryGetter,);
