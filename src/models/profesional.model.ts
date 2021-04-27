@@ -1,6 +1,6 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
-import {ProfesionalAgenda} from './profesional-agenda.model';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import {Cita} from './cita.model';
+import {ProfesionalAgenda} from './profesional-agenda.model';
 
 @model({
   settings: {idInjection: false, postgresql: {schema: 'public', table: 'Profesional'}}
@@ -42,7 +42,7 @@ export class Profesional extends Entity {
 
   @property({
     type: 'string',
-    postgresql: {columnName: 'fechasnulas', dataType: 'ARRAY', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    postgresql: {columnName: 'fechasnulas', dataType: 'text', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
   })
   fechasnulas?: string;
 
